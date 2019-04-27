@@ -1,0 +1,38 @@
+<fc>     ::= <importGame>{::}<deff>{::}<callf>
+<deff>   ::= def fun():{:n = 0{::}endn = 0{::}game = game2048(){::}game.cmd_run(){::}while(n < 300 and endn < 10 and game.move_count <= 600):{:{::}if game.biggestvalue == 256:{:return game.biggestvalue:}elif game.area >= 16:{:endn += 1:}else:{:endn = 0:}{::}n += 1{::}<code>:}{::}return game.biggestvalue:}:}
+<callf>  ::= return_val = fun()
+<importGame>::= import sys{::}sys.path.append("'"D:\\PythonCode\\PonyGE2-master\\src"'"){::}from game2048 import game2048
+
+
+<code>   ::= <line>
+           | <code>{::}<line>
+
+<line>   ::= <if-stmt>
+           | <op>
+
+<if-stmt> ::= if <cond>:{:<line>:}  # if
+            | if <cond>:{:<line>:}else:{:<line>:}  # if else
+            #| if <cond>:{:<line>:}elif <cond>: {:<line>:}else:{:<line>:}  # if elif else
+
+<cond>    ::= (<look> <cmp> <judgm>)
+
+<look>    ::= game.look_up()
+            | game.look_down()
+            | game.look_left()
+            | game.look_right()
+
+<cmp>     ::= "=="
+            | "!="
+
+<judgm>   ::= True
+            | False
+
+
+<op>      ::= game.move_up()
+            | game.move_down()
+            | game.move_left()
+            | game.move_right()
+
+<try>     ::= try:{:<code>:} 
+<except>  ::= except:{:pass:}
+

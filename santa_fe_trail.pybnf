@@ -1,0 +1,32 @@
+<fc>     ::= <importAnt>{::}<deff>{::}<callf>
+<deff>   ::= def fun():{:n = 0{::}a = Ant(){::}while(((a.count < 615) or (a.food == 90)) and n<3000):{:{::}n += 1{::}<code>:}{::}return a.food:}:}
+<callf>  ::= return_val = fun()
+<importAnt>::= import sys{::}sys.path.append("'"D:\\PythonCode\\PonyGE2-master\\src"'"){::}from ant import Ant
+
+
+<code>   ::= <line>
+           | <code>{::}<line>
+
+<line>   ::= <if-stmt>
+           | <op>
+
+<if-stmt> ::= if <cond>:{:<line>:}  # if
+            | if <cond>:{:<line>:}else:{:<line>:}  # if else
+            #| if <cond>:{:<line>:}elif <cond>: {:<line>:}else:{:<line>:}  # if elif else
+
+<cond>    ::= (a.food_ahead() <cmp> <judgm>)
+
+<cmp>     ::= "=="
+            | "!="
+
+<judgm>   ::= True
+            | False
+
+
+<op>      ::= a.turn_left()
+            | a.turn_right()
+            | a.move()
+
+<try>     ::= try:{:<code>:} 
+<except>  ::= except:{:pass:}
+
